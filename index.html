@@ -1,0 +1,752 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>從文字到作品｜用 AI 產出、用 GitHub 發佈</title>
+  <meta name="description" content="AI 應用課程第二堂：Prompt 技巧、專案流程、基本文書、GitHub Pages 部署。" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="progress" aria-hidden="true"><span id="progressBar"></span></div>
+  <nav class="deck-nav" aria-label="簡報導覽">
+    <button id="prevBtn" type="button" aria-label="上一頁">↑</button>
+    <span id="pageIndicator">01 / 38</span>
+    <button id="nextBtn" type="button" aria-label="下一頁">↓</button>
+  </nav>
+
+  <main id="deck">
+
+    <!-- ═══════════════════════════════════════════ P1 HERO ═══ -->
+    <section class="slide hero gradient-bg-01" id="p1">
+      <div class="shade light"></div>
+      <div class="content hero-content left">
+        <p class="eyebrow">Lesson 02｜AI Work Literacy</p>
+        <h1>從文字到作品</h1>
+        <p class="subtitle">學會提問、學會產出、學會發佈。</p>
+        <p class="narrative">上一堂課我們看到 AI 正在改變工作方式。<br>這一堂課，我們開始動手。</p>
+        <p class="micro">用 AI 產出、用 GitHub 發佈</p>
+        <p class="micro" style="margin-top:18px;opacity:.75;letter-spacing:.04em;">By Michael Liao</p>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ P2 TODAY ═══ -->
+    <section class="slide card-grid-slide gradient-bg-02" id="p2">
+      <div class="content narrow center">
+        <p class="eyebrow">Today</p>
+        <h2>今天的四件事</h2>
+        <p class="narrative">從「會用 ChatGPT」到「能用 AI 完成作品」，中間差的不是天賦，而是方法。</p>
+        <div class="cards four">
+          <article class="glass-card"><span>01</span><h3>產出好文案</h3><p class="micro">Prompt 技巧 × 專案流程</p></article>
+          <article class="glass-card"><span>02</span><h3>基本文書能力</h3><p class="micro">Markdown × Obsidian</p></article>
+          <article class="glass-card"><span>03</span><h3>作品上線</h3><p class="micro">GitHub Pages 部署</p></article>
+          <article class="glass-card"><span>04</span><h3>做一個小遊戲</h3><p class="micro">用 AI 從零生成</p></article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ P3 RECAP ═══ -->
+    <section class="slide narrative-slide" id="p3">
+      <div class="content center narrow">
+        <p class="eyebrow">Recap</p>
+        <h2>上堂課的核心觀點</h2>
+        <p class="narrative">AI 不只是回答問題的工具，它正在變成工作流程的一部分。差距不在於誰會用 AI，而在於誰能把 AI 放進自己的工作方式。</p>
+        <div class="keyword-row">
+          <span>定義問題</span><span>拆解任務</span><span>指揮工具</span><span>驗證結果</span>
+        </div>
+        <p class="micro" style="margin-top:28px;">今天，我們開始練習這四件事。</p>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════ CH1: PROMPT ═══ -->
+    <section class="slide chapter gradient-bg-03" id="p4">
+      <div class="content center wide">
+        <p class="eyebrow">Chapter 01</p>
+        <h2>好的產出，<br>從好的提問開始</h2>
+        <p class="subtitle">Prompt 不是咒語。<br>它是你跟 AI 溝通的介面。</p>
+        <p class="narrative">你怎麼問，決定 AI 怎麼答。問得越清楚，結果越接近你要的。</p>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ P5 BAD PROMPT ═══ -->
+    <section class="slide narrative-slide" id="p5">
+      <div class="content center narrow">
+        <p class="eyebrow">The Problem</p>
+        <h2>大多數人<br>這樣用 AI</h2>
+        <div class="prompt-box bad">
+          <span class="label">❌ 常見 Prompt</span>
+          幫我寫一篇文案
+        </div>
+        <p class="narrative" style="margin-top:32px;">沒有背景、沒有對象、沒有格式、沒有限制。<br>AI 只能猜，結果自然不會是你要的。</p>
+        <p class="micro">這不是 AI 的問題。是指令的問題。</p>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ P6 FORMULA ═══ -->
+    <section class="slide card-grid-slide" id="p6">
+      <div class="content center wide">
+        <p class="eyebrow">Prompt Structure</p>
+        <h2>好 Prompt 的五個元素</h2>
+        <p class="narrative">不需要背公式，但你需要養成把需求說清楚的習慣。</p>
+        <div class="formula-row">
+          <div class="formula-item">角色</div>
+          <div class="formula-plus">+</div>
+          <div class="formula-item">背景</div>
+          <div class="formula-plus">+</div>
+          <div class="formula-item">任務</div>
+          <div class="formula-plus">+</div>
+          <div class="formula-item">格式</div>
+          <div class="formula-plus">+</div>
+          <div class="formula-item">限制</div>
+        </div>
+        <div class="cards five compact" style="margin-top:24px;">
+          <article class="glass-card"><h3>角色</h3><p class="micro">你是誰？</p></article>
+          <article class="glass-card"><h3>背景</h3><p class="micro">為什麼要做？</p></article>
+          <article class="glass-card"><h3>任務</h3><p class="micro">具體要什麼？</p></article>
+          <article class="glass-card"><h3>格式</h3><p class="micro">要怎麼呈現？</p></article>
+          <article class="glass-card"><h3>限制</h3><p class="micro">有什麼條件？</p></article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ P7 GOOD PROMPT ═══ -->
+    <section class="slide narrative-slide" id="p7">
+      <div class="content center narrow">
+        <p class="eyebrow">Good Prompt</p>
+        <h2>同一件事，<br>換一種問法</h2>
+        <div class="prompt-box good">
+          <span class="label">✓ 結構化 Prompt</span>
+          你是一位社群媒體行銷專員。<br>
+          我們是一間位於桃園的青年志工協會，下週六舉辦淨灘活動。<br>
+          請幫我寫一篇 Instagram 貼文，目標是吸引 18–30 歲的年輕人報名參加。<br>
+          格式：標題 + 正文（150 字內）+ 3 個 hashtag。<br>
+          語氣要輕鬆親切，不要太正式。
+        </div>
+        <p class="narrative" style="margin-top:32px;">同樣是「幫我寫文案」，但 AI 現在知道你是誰、要給誰看、要什麼格式、有什麼限制。</p>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ P8 COMPARISON ═══ -->
+    <section class="slide split-comparison" id="p8">
+      <div class="content wide">
+        <p class="eyebrow">Before / After</p>
+        <h2>差別不在 AI，<br>在於你怎麼問。</h2>
+        <div class="compare-grid">
+          <article class="compare-card dim">
+            <h3>模糊指令</h3>
+            <p>「幫我寫活動公告」<br>「翻譯這段」<br>「寫個企劃」<br>「幫我做簡報大綱」</p>
+          </article>
+          <article class="compare-card glow">
+            <h3>結構化指令</h3>
+            <p>對象＋目的＋格式＋語氣<br>保留術語＋正式書面語<br>目標＋時程＋預算＋風險<br>5 頁＋每頁重點＋搭配圖表建議</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ P9 ITERATE ═══ -->
+    <section class="slide narrative-slide" id="p9">
+      <div class="content split align-center">
+        <div>
+          <p class="eyebrow">Iterate</p>
+          <h2>好文案<br>不是一次問出來的。</h2>
+          <p class="narrative">第一次的產出通常只是起點。真正的技巧在於追問、修正、精煉。AI 不怕你改，它怕你不說清楚。</p>
+          <p class="micro">迭代 ≠ 重來。每一次追問，都讓 AI 更理解你。</p>
+        </div>
+        <div class="cards vertical">
+          <article class="glass-card thin">第一輪：產出初稿</article>
+          <article class="glass-card thin">「語氣再活潑一點」</article>
+          <article class="glass-card thin">「加一個行動呼籲」</article>
+          <article class="glass-card thin">「把第二段縮短到 50 字」</article>
+          <article class="glass-card thin highlight" style="border-color:rgba(86,231,255,.5);background:rgba(86,231,255,.08);">✓ 最終版本</article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════ CH2: PROJECT ═══ -->
+    <section class="slide chapter gradient-bg-04" id="p10">
+      <div class="content center wide">
+        <p class="eyebrow">Chapter 02</p>
+        <h2>一個專案，<br>怎麼從零開始</h2>
+        <p class="subtitle">文案只是產出的一部分。<br>完整的專案需要流程。</p>
+        <p class="narrative">AI 可以幫你做很多事，但前提是你知道整件事該怎麼拆。</p>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ P11 FLOW ═══ -->
+    <section class="slide narrative-slide" id="p11">
+      <div class="content center wide">
+        <p class="eyebrow">Project Flow</p>
+        <h2>專案的四個階段</h2>
+        <p class="narrative">不管專案大小，流程都長這樣。差別只在每個階段的深度。</p>
+        <div class="flow-horizontal">
+          <div class="flow-node active">定義需求</div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-node">拆解任務</div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-node">AI 協作</div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-node">驗證交付</div>
+        </div>
+        <p class="micro">每個階段都有 AI 能幫上忙的地方。但你要先知道自己在哪一步。</p>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ P12 DEFINE ═══ -->
+    <section class="slide narrative-slide" id="p12">
+      <div class="content split align-center">
+        <div>
+          <p class="eyebrow">Step 01｜Define</p>
+          <h2>搞清楚<br>「到底要做什麼」</h2>
+          <p class="narrative">大多數專案失敗，不是因為做不好，而是因為一開始就沒搞清楚目標。<br>在動手之前，先回答這些問題。</p>
+        </div>
+        <div class="cards vertical">
+          <article class="glass-card thin">這是給誰的？</article>
+          <article class="glass-card thin">他們看完要做什麼？</article>
+          <article class="glass-card thin">什麼時候要完成？</article>
+          <article class="glass-card thin">成功的標準是什麼？</article>
+          <article class="glass-card thin">有什麼限制？</article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ P13 DECOMPOSE ═══ -->
+    <section class="slide card-grid-slide" id="p13">
+      <div class="content center wide">
+        <p class="eyebrow">Step 02｜Decompose</p>
+        <h2>把大目標<br>變成小任務</h2>
+        <p class="narrative">一個「做活動宣傳」的任務，拆開來其實有很多步驟。每一步都可以用 AI 加速。</p>
+        <div class="cards four compact">
+          <article class="glass-card"><span>01</span><h3>確認活動資訊</h3></article>
+          <article class="glass-card"><span>02</span><h3>撰寫文案</h3></article>
+          <article class="glass-card"><span>03</span><h3>製作視覺素材</h3></article>
+          <article class="glass-card"><span>04</span><h3>安排發佈時間</h3></article>
+          <article class="glass-card"><span>05</span><h3>準備報名表單</h3></article>
+          <article class="glass-card"><span>06</span><h3>設計活動頁面</h3></article>
+          <article class="glass-card"><span>07</span><h3>追蹤與回覆</h3></article>
+          <article class="glass-card"><span>08</span><h3>活動後彙整</h3></article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ P14 AI COLLAB ═══ -->
+    <section class="slide split-comparison" id="p14">
+      <div class="content wide">
+        <p class="eyebrow">Step 03｜AI Collaboration</p>
+        <h2>每一步，<br>AI 可以做什麼？</h2>
+        <p class="narrative">你不需要每件事都自己從零開始。但你需要知道 AI 產出的東西，還需要你做什麼。</p>
+        <div class="compare-grid">
+          <article class="compare-card glow">
+            <h3>AI 擅長</h3>
+            <p>產出初稿<br>整理資訊<br>格式轉換<br>多版本產出<br>翻譯與改寫</p>
+          </article>
+          <article class="compare-card dim">
+            <h3>你要負責</h3>
+            <p>確認事實<br>判斷品質<br>決定方向<br>最終審核<br>承擔結果</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ P15 VERIFY ═══ -->
+    <section class="slide quote-slide" id="p15">
+      <div class="content center narrow">
+        <p class="eyebrow">Step 04｜Verify & Ship</p>
+        <h2>交付前，<br>永遠要驗證。</h2>
+        <p class="narrative">AI 會說得很有自信。但自信不等於正確。<br>在按下「送出」之前，檢查這些。</p>
+        <div class="keyword-row">
+          <span>事實正確？</span><span>語氣對嗎？</span><span>格式符合？</span><span>對象會懂？</span><span>有沒有遺漏？</span>
+        </div>
+        <p class="micro" style="margin-top:28px;">AI 幫你做到 80 分。最後 20 分，是你的專業價值。</p>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════ CH3: DOCUMENTS ═══ -->
+    <section class="slide chapter gradient-bg-05" id="p16">
+      <div class="content center wide">
+        <p class="eyebrow">Chapter 03</p>
+        <h2>文書，<br>是工作的基礎介面</h2>
+        <p class="subtitle">不管你做什麼工作，<br>最後都要把想法變成文件。</p>
+        <p class="narrative">Email、報告、企劃、公告、README、SOP⋯⋯文書能力是所有工作的共同語言。</p>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ P17 MARKDOWN INTRO ═══ -->
+    <section class="slide narrative-slide" id="p17">
+      <div class="content split align-center">
+        <div>
+          <p class="eyebrow">Markdown</p>
+          <h2>最簡單的<br>格式化語言</h2>
+          <p class="narrative">Markdown 是一種用純文字寫出結構化文件的方式。GitHub、Notion、HackMD、很多工具都支援它。</p>
+          <div class="chips"><span>容易學</span><span>不需安裝</span><span>到處通用</span><span>AI 也會寫</span></div>
+        </div>
+        <div class="cards vertical">
+          <article class="glass-card thin">GitHub README</article>
+          <article class="glass-card thin">技術文件</article>
+          <article class="glass-card thin">部落格文章</article>
+          <article class="glass-card thin">專案紀錄</article>
+          <article class="glass-card thin">會議筆記</article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ P18 MARKDOWN SYNTAX ═══ -->
+    <section class="slide card-grid-slide" id="p18">
+      <div class="content center wide">
+        <p class="eyebrow">Syntax</p>
+        <h2>Markdown 速查</h2>
+        <p class="narrative">只要記住這幾個符號，就能寫出有標題、有列表、有連結的文件。</p>
+        <div class="md-split">
+          <div class="md-raw"><span class="md-label">Markdown 原始碼</span># 標題
+## 次標題
+
+**粗體文字** 和 *斜體文字*
+
+- 列表項目一
+- 列表項目二
+- 列表項目三
+
+[連結文字](https://url.com)
+
+> 引用一段話
+
+`行內程式碼`</div>
+          <div class="md-preview">
+            <span class="md-label">渲染結果</span>
+            <h4>標題</h4>
+            <h4 style="font-size:1em;">次標題</h4>
+            <p><strong>粗體文字</strong> 和 <em>斜體文字</em></p>
+            <ul>
+              <li>列表項目一</li>
+              <li>列表項目二</li>
+              <li>列表項目三</li>
+            </ul>
+            <p><span style="color:var(--cyan);text-decoration:underline;">連結文字</span></p>
+            <p style="border-left:3px solid var(--cyan);padding-left:12px;color:var(--muted);">引用一段話</p>
+            <p><code style="background:rgba(86,231,255,.12);padding:2px 8px;border-radius:6px;">行內程式碼</code></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ P19 AI + DOCS ═══ -->
+    <section class="slide narrative-slide" id="p19">
+      <div class="content center narrow">
+        <p class="eyebrow">AI + Documents</p>
+        <h2>用 AI 產出<br>結構化文件</h2>
+        <div class="prompt-box good">
+          <span class="label">✓ 範例 Prompt</span>
+          請用 Markdown 格式，幫我寫一份「淨灘志工活動」的 README 文件。<br><br>
+          包含：活動簡介、時間地點、報名方式、注意事項、聯絡資訊。<br>
+          用清楚的標題和列表來組織內容。
+        </div>
+        <p class="narrative" style="margin-top:28px;">AI 產出 → 你檢查結構 → 修正內容 → 放進專案。<br>文件不是寫完就好，它是溝通的介面。</p>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ OBSIDIAN INTRO ═══ -->
+    <section class="slide narrative-slide" id="obs1">
+      <div class="content split align-center">
+        <div>
+          <p class="eyebrow">Real Tool</p>
+          <h2>Markdown<br>不只是上課用的</h2>
+          <p class="narrative">Obsidian 是一款免費的筆記軟體。你剛學的 Markdown 語法，在這裡完全通用。它把每一則筆記，都存成你電腦裡的一個純文字檔——離線可用、資料是你的、永遠不會被綁死。</p>
+          <p class="micro">這證明一件事：Markdown 是帶著走的技能，不綁在任何一個網站上。</p>
+        </div>
+        <div class="cards vertical">
+          <article class="glass-card thin">完全免費（個人使用）</article>
+          <article class="glass-card thin">離線也能用</article>
+          <article class="glass-card thin">資料存在你自己電腦</article>
+          <article class="glass-card thin">用的就是 Markdown</article>
+          <article class="glass-card thin">Windows / Mac / 手機都有</article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ OBSIDIAN INSTALL ═══ -->
+    <section class="slide card-grid-slide" id="obs2">
+      <div class="content center wide">
+        <p class="eyebrow">Step by Step</p>
+        <h2>一起安裝 Obsidian</h2>
+        <p class="narrative">跟著做，我們現在一起裝起來。不需要註冊帳號，也不用付費。</p>
+        <div class="ui-mockup">
+          <div class="ui-mockup-bar">
+            <div class="ui-dot"></div><div class="ui-dot"></div><div class="ui-dot"></div>
+            <div class="ui-url-bar">https://obsidian.md</div>
+          </div>
+          <div class="ui-mockup-body">
+            <div class="numbered-list" style="margin:0;">
+              <div class="numbered-item"><div class="num-badge">1</div><p>打開瀏覽器，前往 <strong style="color:var(--cyan);">obsidian.md</strong>（認明這個官方網址）</p></div>
+              <div class="numbered-item"><div class="num-badge">2</div><p>點 <strong>Download</strong>，選你的作業系統（Windows / Mac）</p></div>
+              <div class="numbered-item"><div class="num-badge">3</div><p>打開下載的安裝檔，按指示安裝<br><span style="color:var(--soft);font-size:.85em;">Windows 若跳出 SmartScreen，點「更多資訊」→「仍要執行」</span></p></div>
+              <div class="numbered-item"><div class="num-badge">4</div><p>安裝完成，打開 Obsidian</p></div>
+            </div>
+          </div>
+        </div>
+        <p class="micro" style="margin-top:18px;">⚠️ 只從官方 <strong style="color:var(--cyan);">obsidian.md</strong> 下載。網路上有很多長得很像的假下載站，不要點。</p>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ OBSIDIAN FIRST NOTE ═══ -->
+    <section class="slide card-grid-slide gradient-bg-03" id="obs3">
+      <div class="content center wide">
+        <p class="eyebrow">First Note</p>
+        <h2>寫下你的第一則筆記</h2>
+        <p class="narrative">Vault（筆記庫）就是一個放筆記的資料夾。裡面每一則筆記，都是一個 Markdown 檔。</p>
+        <div class="steps-grid two-col">
+          <div class="step-card">
+            <div class="step-number">1</div>
+            <h3>建立 Vault</h3>
+            <p>選「<strong style="color:var(--cyan);">Create new vault</strong>」，取個名字、選一個資料夾存放。</p>
+          </div>
+          <div class="step-card">
+            <div class="step-number">2</div>
+            <h3>開始寫</h3>
+            <p>新增一則筆記，用你剛學的 Markdown：<strong style="color:var(--cyan);"># 標題</strong>、<strong style="color:var(--cyan);">- 列表</strong>、<strong style="color:var(--cyan);">**粗體**</strong>，全部通用。</p>
+          </div>
+          <div class="step-card">
+            <div class="step-number">3</div>
+            <h3>連結筆記</h3>
+            <p>打兩個中括號 <strong style="color:var(--cyan);">[[</strong>，就能把一則筆記連到另一則，建立你自己的知識網。</p>
+          </div>
+          <div class="step-card">
+            <div class="step-number">4</div>
+            <h3>看關係圖</h3>
+            <p>打開 <strong style="color:var(--cyan);">Graph View</strong>，你的筆記會變成一張互相連結的關係圖。</p>
+          </div>
+        </div>
+        <p class="micro" style="margin-top:20px;">你剛學的 Markdown，現在變成一個能用一輩子的個人工具。</p>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════ CH4: GITHUB PAGES ═══ -->
+    <section class="slide chapter gradient-bg-01" id="p20">
+      <div class="content center wide">
+        <p class="eyebrow">Chapter 04</p>
+        <h2>讓你的作品<br>被世界看到</h2>
+        <p class="subtitle">寫出來的東西，如果沒有人看得到，<br>就只是練習。</p>
+        <p class="narrative">GitHub Pages 讓你免費把 HTML 網頁發佈到網路上。不需要買主機、不需要會後端。</p>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ P21 WHAT IS GITHUB ═══ -->
+    <section class="slide narrative-slide" id="p21">
+      <div class="content split align-center">
+        <div>
+          <p class="eyebrow">What is GitHub?</p>
+          <h2>GitHub<br>是什麼？</h2>
+          <p class="narrative">GitHub 是全球最大的程式碼與檔案協作平台。你可以把它想像成「程式碼版的 Google Drive」，但它還多了版本紀錄、網頁發佈、團隊協作等功能。</p>
+        </div>
+        <div class="cards vertical">
+          <article class="glass-card thin">免費帳號就能用</article>
+          <article class="glass-card thin">儲存任何類型的檔案</article>
+          <article class="glass-card thin">記錄每一次修改</article>
+          <article class="glass-card thin">支援網頁發佈（GitHub Pages）</article>
+          <article class="glass-card thin">全球開發者都在用</article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ P22 STEP 1 ═══ -->
+    <section class="slide card-grid-slide" id="p22">
+      <div class="content center wide">
+        <p class="eyebrow">Step 1</p>
+        <h2>建立 GitHub 帳號</h2>
+        <p class="narrative">如果你還沒有帳號，現在就去註冊。過程只需要幾分鐘。</p>
+        <div class="ui-mockup">
+          <div class="ui-mockup-bar">
+            <div class="ui-dot"></div><div class="ui-dot"></div><div class="ui-dot"></div>
+            <div class="ui-url-bar">https://github.com/signup</div>
+          </div>
+          <div class="ui-mockup-body">
+            <div class="numbered-list" style="margin:0;">
+              <div class="numbered-item"><div class="num-badge">1</div><p>前往 <strong>github.com</strong>，點選右上角 <strong>Sign up</strong></p></div>
+              <div class="numbered-item"><div class="num-badge">2</div><p>輸入你的 <strong>Email</strong>，設定 <strong>密碼</strong> 和 <strong>使用者名稱</strong></p></div>
+              <div class="numbered-item"><div class="num-badge">3</div><p>完成 Email 驗證（到信箱收驗證信）</p></div>
+              <div class="numbered-item"><div class="num-badge">4</div><p>選擇 <strong>Free</strong> 方案即可（不需要付費）</p></div>
+            </div>
+          </div>
+        </div>
+        <p class="micro" style="margin-top:18px;">提示：使用者名稱會變成你的網址，例如 username.github.io</p>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ P23 STEP 2 ═══ -->
+    <section class="slide card-grid-slide" id="p23">
+      <div class="content center wide">
+        <p class="eyebrow">Step 2</p>
+        <h2>建立 Repository</h2>
+        <p class="narrative">Repository（倉庫）就是一個放檔案的資料夾，但它有版本紀錄。</p>
+        <div class="ui-mockup">
+          <div class="ui-mockup-bar">
+            <div class="ui-dot"></div><div class="ui-dot"></div><div class="ui-dot"></div>
+            <div class="ui-url-bar">https://github.com/new</div>
+          </div>
+          <div class="ui-mockup-body">
+            <div class="numbered-list" style="margin:0;">
+              <div class="numbered-item"><div class="num-badge">1</div><p>登入 GitHub 後，點選右上角 <strong>＋</strong> → <strong>New repository</strong></p></div>
+              <div class="numbered-item"><div class="num-badge">2</div><p>輸入 <strong>Repository name</strong>（例如：my-first-site）</p></div>
+              <div class="numbered-item"><div class="num-badge">3</div><p>選擇 <strong>Public</strong>（公開，GitHub Pages 需要）</p></div>
+              <div class="numbered-item"><div class="num-badge">4</div><p>勾選 <strong>Add a README file</strong></p></div>
+              <div class="numbered-item"><div class="num-badge">5</div><p>點擊 <strong>Create repository</strong></p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ P24 STEP 3 ═══ -->
+    <section class="slide card-grid-slide" id="p24">
+      <div class="content center wide">
+        <p class="eyebrow">Step 3</p>
+        <h2>上傳你的 HTML 檔案</h2>
+        <p class="narrative">把你的 index.html（和 CSS、圖片等）上傳到 Repository。</p>
+        <div class="ui-mockup">
+          <div class="ui-mockup-bar">
+            <div class="ui-dot"></div><div class="ui-dot"></div><div class="ui-dot"></div>
+            <div class="ui-url-bar">https://github.com/你的帳號/my-first-site</div>
+          </div>
+          <div class="ui-mockup-body">
+            <div class="numbered-list" style="margin:0;">
+              <div class="numbered-item"><div class="num-badge">1</div><p>進入你的 Repository 頁面</p></div>
+              <div class="numbered-item"><div class="num-badge">2</div><p>點選 <strong>Add file</strong> → <strong>Upload files</strong></p></div>
+              <div class="numbered-item"><div class="num-badge">3</div><p>把你的檔案 <strong>拖曳</strong> 到上傳區域</p></div>
+              <div class="numbered-item"><div class="num-badge">4</div><p>在下方 Commit message 寫一句說明（例如：上傳首頁）</p></div>
+              <div class="numbered-item"><div class="num-badge">5</div><p>點擊 <strong>Commit changes</strong></p></div>
+            </div>
+          </div>
+        </div>
+        <p class="micro" style="margin-top:18px;">重要：主頁面的檔名一定要叫 <code style="background:rgba(86,231,255,.14);padding:2px 8px;border-radius:6px;color:#eafcff;">index.html</code></p>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ P25 STEP 4 ═══ -->
+    <section class="slide card-grid-slide" id="p25">
+      <div class="content center wide">
+        <p class="eyebrow">Step 4</p>
+        <h2>啟用 GitHub Pages</h2>
+        <p class="narrative">上傳完檔案後，還需要開啟 Pages 功能，你的網站才會上線。</p>
+        <div class="ui-mockup">
+          <div class="ui-mockup-bar">
+            <div class="ui-dot"></div><div class="ui-dot"></div><div class="ui-dot"></div>
+            <div class="ui-url-bar">https://github.com/你的帳號/my-first-site/settings/pages</div>
+          </div>
+          <div class="ui-mockup-body">
+            <div class="numbered-list" style="margin:0;">
+              <div class="numbered-item"><div class="num-badge">1</div><p>進入 Repository → 上方選單點選 <strong>Settings</strong></p></div>
+              <div class="numbered-item"><div class="num-badge">2</div><p>左側選單找到 <strong>Pages</strong></p></div>
+              <div class="numbered-item"><div class="num-badge">3</div><p>在 Source 區域選擇 <strong>Deploy from a branch</strong></p></div>
+              <div class="numbered-item"><div class="num-badge">4</div><p>Branch 選 <strong>main</strong>，資料夾選 <strong>/ (root)</strong></p></div>
+              <div class="numbered-item"><div class="num-badge">5</div><p>點擊 <strong>Save</strong></p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ P26 STEP 5 ═══ -->
+    <section class="slide quote-slide gradient-bg-02" id="p26">
+      <div class="content center narrow">
+        <p class="eyebrow">Step 5</p>
+        <h2>你的網站<br>上線了！</h2>
+        <p class="narrative">等待約 1–3 分鐘，GitHub 會自動部署。完成後你會得到一個網址：</p>
+        <div class="ui-mockup" style="max-width:620px;">
+          <div class="ui-mockup-bar">
+            <div class="ui-dot"></div><div class="ui-dot"></div><div class="ui-dot"></div>
+            <div class="ui-url-bar">https://你的帳號.github.io/my-first-site/</div>
+          </div>
+          <div class="ui-mockup-body" style="text-align:center;padding:40px;">
+            <p style="font-size:clamp(28px,3vw,42px);font-weight:800;color:white;margin:0;">🎉 恭喜！</p>
+            <p style="margin:12px 0 0;">你的第一個網站，全世界都看得到了。</p>
+          </div>
+        </div>
+        <p class="micro" style="margin-top:22px;">這個網址可以分享給任何人。手機也能打開。</p>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ P27 TROUBLESHOOT ═══ -->
+    <section class="slide card-grid-slide" id="p27">
+      <div class="content center wide">
+        <p class="eyebrow">Troubleshooting</p>
+        <h2>常見問題</h2>
+        <p class="narrative">第一次部署一定會遇到問題，不要緊張。以下是最常見的狀況。</p>
+        <div class="steps-grid two-col">
+          <div class="step-card">
+            <div class="step-number">?</div>
+            <h3>網頁顯示 404</h3>
+            <p>確認你的主檔案名稱是 <strong style="color:var(--cyan);">index.html</strong>（全小寫）。如果名字不對，GitHub 找不到首頁。</p>
+          </div>
+          <div class="step-card">
+            <div class="step-number">?</div>
+            <h3>CSS / 圖片沒載入</h3>
+            <p>檢查路徑是否正確。在 GitHub 上，大小寫有差別。<strong style="color:var(--cyan);">Style.css</strong> 和 <strong style="color:var(--cyan);">style.css</strong> 是不同的檔案。</p>
+          </div>
+          <div class="step-card">
+            <div class="step-number">?</div>
+            <h3>更新了但網站沒變</h3>
+            <p>GitHub Pages 有快取。按 <strong style="color:var(--cyan);">Ctrl + Shift + R</strong>（Mac 用 Cmd + Shift + R）強制重新載入。</p>
+          </div>
+          <div class="step-card">
+            <div class="step-number">?</div>
+            <h3>Pages 設定找不到</h3>
+            <p>確認 Repository 是 <strong style="color:var(--cyan);">Public</strong>。Private repo 的 Pages 需要付費方案。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════ CH5: BUILD A GAME ═══ -->
+    <section class="slide chapter gradient-bg-04" id="game1">
+      <div class="content center wide">
+        <p class="eyebrow">Chapter 05 · Capstone</p>
+        <h2>最後的挑戰：<br>用 AI 做一個小遊戲</h2>
+        <p class="subtitle">這是整堂課的總驗收。</p>
+        <p class="narrative">你不會寫遊戲的程式，沒關係。今天的重點不是你會不會 coding，而是你能不能指揮 AI，做出一個能玩、能分享的作品。這，就是「AI 使用者」和「AI 工作者」的差別。</p>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ GAME MENU ═══ -->
+    <section class="slide card-grid-slide" id="game2">
+      <div class="content center wide">
+        <p class="eyebrow">Pick Your Game</p>
+        <h2>選一個你想做的遊戲</h2>
+        <p class="narrative">從簡單的開始。做得出來、能玩、有成就感最重要。想挑戰的人，最後有一個進階題。</p>
+        <div class="cards five compact">
+          <article class="glass-card"><h3>✊ 猜拳遊戲</h3><p class="micro">石頭剪刀布 + 計分</p></article>
+          <article class="glass-card"><h3>🃏 記憶翻牌</h3><p class="micro">配對消除</p></article>
+          <article class="glass-card"><h3>❓ 問答遊戲</h3><p class="micro">小測驗 + 分數</p></article>
+          <article class="glass-card"><h3>🔨 打地鼠</h3><p class="micro">反應速度</p></article>
+          <article class="glass-card"><h3>🍪 點擊放置</h3><p class="micro">點越多分越高</p></article>
+        </div>
+        <div class="cards vertical" style="margin-top:16px;max-width:820px;margin-left:auto;margin-right:auto;">
+          <article class="glass-card thin" style="border-color:rgba(213,140,255,.45);background:rgba(213,140,255,.08);text-align:center;">
+            🧩 進階挑戰：<strong style="color:var(--cyan);">方塊墜落</strong>（俄羅斯方塊風格）— 給想拼的人
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ GAME PROMPT ═══ -->
+    <section class="slide narrative-slide" id="game3">
+      <div class="content center narrow">
+        <p class="eyebrow">The Prompt</p>
+        <h2>怎麼請 AI<br>幫你生一個遊戲</h2>
+        <div class="prompt-box good">
+          <span class="label">✓ 起手式 Prompt</span>
+          請幫我用純 HTML + CSS + JavaScript，寫一個「猜拳遊戲」。<br><br>
+          要求：<br>
+          • 全部程式碼寫在<strong>同一個 index.html 檔案</strong>裡，不要分成多個檔<br>
+          • 用瀏覽器<strong>直接打開就能玩</strong>，不需要安裝任何東西<br>
+          • 畫面簡單清楚，有基本的樣式與按鈕<br>
+          • 玩家出拳後，顯示電腦出什麼、誰贏了、並記錄分數<br><br>
+          請給我完整的程式碼，我會直接存成 index.html。
+        </div>
+        <p class="micro" style="margin-top:24px;">關鍵兩句：<strong style="color:var(--cyan);">「單一 index.html」</strong>＋<strong style="color:var(--cyan);">「瀏覽器直接打開」</strong>。這樣才放得上 GitHub Pages。</p>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ GAME DEBUG ═══ -->
+    <section class="slide split-comparison" id="game4">
+      <div class="content center narrow">
+        <p class="eyebrow">When It Breaks</p>
+        <h2>壞掉的時候，<br>怎麼跟 AI 講？</h2>
+        <p class="narrative">AI 生的第一版常常有 bug，很正常。你不需要自己讀懂程式，你只需要把「你做了什麼、看到什麼、期待什麼」講清楚。</p>
+        <div class="prompt-box bad" style="margin-top:8px;">
+          <span class="label">❌ AI 修不了</span>
+          「壞了，幫我修。」
+        </div>
+        <div class="prompt-box good" style="margin-top:28px;">
+          <span class="label">✓ AI 能動手</span>
+          我按下「剪刀」按鈕後，畫面完全沒反應，分數也沒有變。<br>
+          我原本期待它要顯示電腦出什麼、然後更新分數。
+        </div>
+        <div class="formula-row" style="margin-top:28px;">
+          <div class="formula-item">我做了什麼</div>
+          <div class="formula-plus">+</div>
+          <div class="formula-item">看到什麼</div>
+          <div class="formula-plus">+</div>
+          <div class="formula-item">期待什麼</div>
+        </div>
+        <p class="micro">還記得 Prompt 那一章的「迭代」嗎？這就是同一招。</p>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ GAME DEPLOY ═══ -->
+    <section class="slide quote-slide gradient-bg-05" id="game5">
+      <div class="content center narrow">
+        <p class="eyebrow">Ship It</p>
+        <h2>把遊戲<br>放上線</h2>
+        <p class="narrative">流程跟你前面剛學的一模一樣。把 AI 生的檔案上傳、啟用 Pages、拿到網址。</p>
+        <div class="flow-horizontal" style="margin:24px auto;">
+          <div class="flow-node">存成 index.html</div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-node">上傳到 Repo</div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-node">啟用 Pages</div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-node active">拿到網址</div>
+        </div>
+        <p class="subtitle" style="margin-top:8px;">你做了一個遊戲，<br><strong>而且全世界都能玩。</strong></p>
+        <p class="micro">把網址貼到群組，讓大家互相玩玩看。</p>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ P28 SUMMARY ═══ -->
+    <section class="slide card-grid-slide" id="p28">
+      <div class="content center wide">
+        <p class="eyebrow">Summary</p>
+        <h2>今天學到的六件事</h2>
+        <p class="narrative">每一件都是從「會用 AI」到「能用 AI 工作」的關鍵能力。</p>
+        <div class="cards seven compact">
+          <article class="glass-card"><span>01</span><h3>結構化提問</h3></article>
+          <article class="glass-card"><span>02</span><h3>迭代精煉</h3></article>
+          <article class="glass-card"><span>03</span><h3>專案流程</h3></article>
+          <article class="glass-card"><span>04</span><h3>Markdown & Obsidian</h3></article>
+          <article class="glass-card"><span>05</span><h3>GitHub 發佈</h3></article>
+          <article class="glass-card"><span>06</span><h3>用 AI 做作品</h3></article>
+        </div>
+        <p class="micro">工具會變，但「定義、拆解、執行、驗證、發佈」的流程不會變。</p>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ P29 NEXT ═══ -->
+    <section class="slide checklist-slide" id="p29">
+      <div class="content wide center">
+        <p class="eyebrow">Next Class</p>
+        <h2>下次課程準備</h2>
+        <p class="narrative">下一堂課，我們會進入更深的技術整合，開始串接工具與資料流。</p>
+        <div class="compare-grid">
+          <article class="compare-card glow">
+            <h3>課後作業</h3>
+            <p>用 AI 產出一份文案<br>用 Obsidian 寫一份 Markdown 筆記<br>用 AI 從零生成一個小遊戲<br>把遊戲部署到 GitHub Pages<br>把網址貼到課程群組</p>
+          </article>
+          <article class="compare-card">
+            <h3>先預習</h3>
+            <p>什麼是 API？<br>什麼是 JSON？<br>前端 vs 後端<br>自動化工作流是什麼？</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ P30 CLOSING ═══ -->
+    <section class="slide hero closing gradient-bg-01" id="p30">
+      <div class="shade light"></div>
+      <div class="content left">
+        <p class="eyebrow">Manifesto</p>
+        <h2 class="english">Don't just use AI.</h2>
+        <h2 class="english gradient-text">Build something with it.<br>Then ship it.</h2>
+        <p class="subtitle">不要只是使用 AI。<br>用它做出東西，然後讓世界看到。</p>
+        <p class="narrative">會寫 Prompt，只是第一步。能產出完整作品，能放上網路讓人看到，這才是真正的 AI 工作能力。</p>
+        <p class="micro">Next｜工具串接與自動化工作流</p>
+        <p class="micro" style="margin-top:18px;opacity:.75;letter-spacing:.04em;">By Michael Liao</p>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
